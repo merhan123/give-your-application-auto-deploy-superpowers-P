@@ -71,17 +71,17 @@ jobs:
           key: backend-deps
 
   test-frontend:
-     docker:
+    docker:
        # Docker image here
-       - image: cimg/node:13.8.0
+      - image: cimg/node:13.8.0
 
-       steps:
-        - checkout
-        - restore_cache:
-            keys: [frontend-deps]
-        - run:
-            name: Frond-end unit test
-            command: |
+      steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-deps]
+      - run:
+          name: Frond-end unit test
+          command: |
                # Your code here
                cd front-end
                npm install
