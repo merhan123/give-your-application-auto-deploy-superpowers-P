@@ -83,7 +83,7 @@ jobs:
           name: Frond-end unit test
           command: |
                # Your code here
-            cd front-end
+            cd frontend
             npm install
             npm run build
   
