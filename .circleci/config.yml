@@ -82,11 +82,11 @@ jobs:
           name: Back-end build
           command: |
              cd backend
-             sudo chown -R $USER /usr/local/lib/node_modules
              npm install --save-dev @jbiskur/nestjs-async-module  
              npm install -g concurrently 
              npm install
              npm audit fix --force
+             sudo chown -R $USER /usr/local/lib/node_modules
              npm run build
       - save_cache:
           paths: [backend/node_modules]
