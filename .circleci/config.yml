@@ -82,7 +82,8 @@ jobs:
           name: Back-end build
           command: |
              cd backend
-             sudo chown -R $USER /usr/local/lib/node_modules
+             sudo chown -R ownerName: /usr/local/lib/node_modules
+             #sudo chown -R $USER /usr/local/lib/node_modules
              npm install --save-dev @jbiskur/nestjs-async-module  
              npm install -g concurrently 
              npm install
