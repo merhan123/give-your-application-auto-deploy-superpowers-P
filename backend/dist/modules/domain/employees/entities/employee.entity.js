@@ -153,7 +153,7 @@ var SalaryType;
     SalaryType["HOURLY"] = "hourly";
 })(SalaryType = exports.SalaryType || (exports.SalaryType = {}));
 function getDateFromString(date) {
-    return moment(date).format('M/D/YYYY');
+    return moment(date, "MM/DD/YYYY").toDate();
 }
 exports.getDateFromString = getDateFromString;
 function getGenderFromEnum(gender) {

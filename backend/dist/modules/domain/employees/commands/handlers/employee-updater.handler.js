@@ -43,9 +43,7 @@ let EmployeeUpdater = class EmployeeUpdater extends commands_1.BaseCommandHandle
             employee.displayName = displayName;
             employee.companyEmail = companyEmail;
             employee.personalEmail = personalEmail;
-            employee.birthdate = moment(birthdate)
-                .utc()
-                .format();
+            employee.birthdate = moment(birthdate).toDate();
             employee.address = address;
             employee.phoneNumber = phoneNumber;
             employee.tags = tags;
@@ -54,9 +52,7 @@ let EmployeeUpdater = class EmployeeUpdater extends commands_1.BaseCommandHandle
             employee.city = city;
             employee.salary = +salary;
             employee.salaryType = employee_entity_1.SalaryType[salaryTypeKey];
-            employee.effectiveDate = moment(effectiveDate)
-                .utc()
-                .format();
+            employee.effectiveDate = moment(effectiveDate).toDate();
             yield this.employeeRepository.save(employee);
         });
     }

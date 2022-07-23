@@ -34,9 +34,7 @@ let EmployeeBirthDateUpdater = class EmployeeBirthDateUpdater extends commands_1
         return __awaiter(this, void 0, void 0, function* () {
             const { employeeId, birthdate } = command;
             const employee = yield this.employeeRepository.findById(employeeId);
-            employee.birthdate = moment(birthdate)
-                .utc()
-                .format();
+            employee.birthdate = moment(birthdate).toDate();
             yield this.employeeRepository.save(employee);
         });
     }

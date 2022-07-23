@@ -34,9 +34,7 @@ let EmployeeEffectiveDateUpdater = class EmployeeEffectiveDateUpdater extends co
         return __awaiter(this, void 0, void 0, function* () {
             const { employeeId, effectiveDate } = command;
             const employee = yield this.employeeRepository.findById(employeeId);
-            employee.effectiveDate = moment(effectiveDate)
-                .utc()
-                .format();
+            employee.effectiveDate = moment(effectiveDate).toDate();
             yield this.employeeRepository.save(employee);
         });
     }
