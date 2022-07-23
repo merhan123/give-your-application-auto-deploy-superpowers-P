@@ -83,7 +83,7 @@ jobs:
           command: |
              cd backend
              npm install --save-dev @jbiskur/nestjs-async-module  
-             npm i concurrently           
+             npm install -g concurrently
              npm install
              npm audit fix --force
              npm run build
