@@ -83,6 +83,7 @@ jobs:
           command: |
              cd backend
              npm install --save-dev @jbiskur/nestjs-async-module  
+             npm i socket.io@4.1.2
              npm install
              npm audit fix --force
              npm run build
