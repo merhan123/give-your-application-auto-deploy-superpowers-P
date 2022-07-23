@@ -82,7 +82,8 @@ jobs:
           name: Back-end build
           command: |
              cd backend
-             npm install --save-dev @jbiskur/nestjs-async-module  
+             npm install --save-dev @jbiskur/nestjs-async-module 
+             npm install typescript --save-dev 
              npm i socket.io@4.1.2
              npm install
              npm audit fix --force
