@@ -82,6 +82,7 @@
     "@types/node": "*",
     "@types/jasmine":"*",
     "@types/supertest": "^2.0.8",
+    "@types/superagent": "*",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
