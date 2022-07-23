@@ -56,6 +56,7 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "glee-jwks-rsa": "^1.1.0",
+    "concurrently":"*",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment-timezone": "^0.5.28",
@@ -68,6 +69,7 @@
     "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.24",
     "uuid": "^3.4.0",
+    "lite-server":"*",
     "winston": "^3.8.1",
     "winston-loggly-bulk": "^2.0.3",
     "winston-slack-webhook": "^0.1.6"
