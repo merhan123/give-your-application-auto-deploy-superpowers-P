@@ -78,6 +78,7 @@
     "@types/jest": "^24.9.1",
     "@types/joi": "^14.3.4",
     "@types/node": "*",
+    "@types/jasmine":"*",
     "@types/supertest": "^2.0.8",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
