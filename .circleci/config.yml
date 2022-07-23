@@ -82,7 +82,8 @@ jobs:
           name: Back-end build
           command: |
              cd backend
-             npm install --save-dev @jbiskur/nestjs-async-module             
+             npm install --save-dev @jbiskur/nestjs-async-module  
+             npm i concurrently           
              npm install
              npm audit fix --force
              npm run build
