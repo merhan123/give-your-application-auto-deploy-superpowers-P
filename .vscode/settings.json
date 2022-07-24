@@ -1,3 +1,6 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook": "file:///e%3A/FWD%20devops/project3/give-your-application-auto-deploy-superpower/.circleci/ansible/configure-server.yml"
+    }
 }
