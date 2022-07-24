@@ -47,7 +47,9 @@ export class EmployeeUpdater extends BaseCommandHandler<UpdateEmployee, void> {
     employee.displayName = displayName;
     employee.companyEmail = companyEmail;
     employee.personalEmail = personalEmail;
-    employee.birthdate = moment(birthdate).toDate();
+    employee.birthdate = moment(birthdate)
+      .utc()
+      .format();
     employee.address = address;
     employee.phoneNumber = phoneNumber;
     employee.tags = tags;
@@ -56,7 +58,9 @@ export class EmployeeUpdater extends BaseCommandHandler<UpdateEmployee, void> {
     employee.city = city;
     employee.salary = +salary;
     employee.salaryType = SalaryType[salaryTypeKey];
-    employee.effectiveDate = moment(effectiveDate).toDate();
+    employee.effectiveDate = moment(effectiveDate)
+      .utc()
+      .format();
 
     await this.employeeRepository.save(employee);
   }
