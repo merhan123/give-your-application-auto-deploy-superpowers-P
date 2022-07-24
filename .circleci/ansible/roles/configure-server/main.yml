@@ -1,0 +1,21 @@
+---
+- name: "Add nodejs"
+  become: true
+  shell: |
+    curl -fsSL https://rpm.nodesource.com/setup_13.x | bash -
+
+
+- name: "Installing nodejs 13"
+  become: true
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "Installing pm2"
+  become: true
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present

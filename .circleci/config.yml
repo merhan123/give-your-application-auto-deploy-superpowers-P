@@ -170,7 +170,7 @@ jobs:
               --tags project=udapeaple \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"  \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
-              exit 1
+              
       - run:
           name: Ensure front-end infrastructure exist
           command: |
@@ -196,21 +196,36 @@ jobs:
       - destroy-environment:
           Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
 
-#   configure-infrastructure:
-#     docker:
+  configure-infrastructure:
+    docker:
+      - image: cimg/node:13.8.0
 #       # Docker image here that supports Ansible
-#     steps:
+    steps:
+      - checkout
+      - install_ansible
+      - add_ssh_keys:
+          fingerprints: ["0f:56:cf:e0:48:76:2a:90:c9:3a:aa:4e:d4:1c:e0:b4"]
+      - attach_workspace:
+          at: ~/
+      - run: 
+          name: configure server
+          command: |
+           cd .circleci/ansible
+           cat inventory.txt
+           ansible-playbook -i inventory.txt configure-server.yml
+      - destroy-environment
+
 #       # Checkout code from git
 #       # Add ssh keys with fingerprint
 #       # attach workspace
-#       - run:
-#           name: Install dependencies
-#           command: |
+      - run:
+          name: Install dependencies
+          command: |
 #             # Your code here
 #             exit 1
-#       - run:
-#           name: Configure server
-#           command: |
+      - run:
+          name: Configure server
+          command: |
 #             # Your code here
 #             exit 1
 #       # Here's where you will add some code to rollback on failure      
@@ -346,8 +361,8 @@ workflows:
           filters:
             branches:
               only: [master]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:
