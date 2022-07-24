@@ -29,8 +29,9 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t2.micro
-      SecurityGroups: !Ref InstanceSecurityGroup
-      KeyName: udacity
+      SecurityGroups:
+        - Ref: InstanceSecurityGroup
+      KeyName: vockey
       ImageId: ami-0729e439b6769d6ab 
       Tags:
         - Key: Name
