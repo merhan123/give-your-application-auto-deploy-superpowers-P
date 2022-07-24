@@ -1,4 +1,11 @@
 ---
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    # upgrade: yes #no need to upgrade the existing system packages to reduce the build time
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
 - name: "Add nodejs"
   become: true
   shell: |
@@ -18,4 +25,4 @@
     name: pm2
     global: yes
     production: yes
-    # state: present
+    state: present
