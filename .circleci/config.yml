@@ -34,8 +34,6 @@ commands:
            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive || echo "failed to remove the s3 files"
            aws cloudformation delete-stack --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" || echo "failed to remove the frontend stack"
            aws cloudformation delete-stack --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" || echo "failed to remove the backend stack"
-            # Your code here
-#             exit 1
 
 #   revert-migrations:
 #     description: Revert the last migration if successfully run in the current workflow.
@@ -67,7 +65,6 @@ jobs:
       - run:
           name: Build front-end
           command: |
-            # Your code here
             cd frontend
             npm install 
             npm run build
@@ -93,7 +90,6 @@ jobs:
           key: backend-deps
   test-frontend:
     docker:
-       # Docker image here
       - image: cimg/node:13.8.0
     steps:
       - checkout
@@ -154,10 +150,8 @@ jobs:
 
   deploy-infrastructure:
     docker:
-#       # Docker image here that supports AWS CLI
       - image: cimg/node:13.8.0
     steps:
-#       # Checkout code from git
       - checkout
       - install_awscli
       - run:
@@ -190,7 +184,8 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+             - .circleci/ansible/inventory.txt
+#            - project/.circleci/ansible/inventory.txt
       - destroy-environment:
           Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
 
