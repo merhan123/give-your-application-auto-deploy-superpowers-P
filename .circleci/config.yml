@@ -82,6 +82,7 @@ jobs:
           name: Back-end build
           command: |
              cd backend
+             npm cache clean --force
              npm install --save-dev @jbiskur/nestjs-async-module 
              npm i socket.io@4.1.2
              npm install
@@ -149,14 +150,7 @@ jobs:
              npm audit fix --force --audit-level=critical
               
 
-              
-#   scan-backend:
-#     docker:
-#       # Docker image here
-#     steps:
-#       # Checkout code from git
-#       # Restore from cache
-#       # Your job code here
+            
 
   deploy-infrastructure:
     docker:
