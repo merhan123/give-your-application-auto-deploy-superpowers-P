@@ -1,30 +1,19 @@
 ---
-  - name: "update packages."
-    become: true
-    apt:
-      update_cache: yes
+- name: Update and upgrade apt packages
+  become: true
+  shell: |
+    curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 
-  - name: "upgrade packages"
-    become: true
-    apt:
-      upgrade: yes
 
-  - name: "Install node.js from nodesource"
-    become: true
-    shell: |
-      curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-      sudo apt -y install nodejs
-  - name: "installing npm"
-    become: true
-    apt:
-      name: npm
-      update_cache: yes
-      state: latest
-  
-  - name: "install pm2"
-    become: true
-    npm:
-      name: pm2
-      global: yes
-      production: yes
-      state: present
+- name: "Installing dependencies"
+  become: true
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "Installing pm2"
+  become: true
+  npm:
+    name: pm2
+    global: yes
