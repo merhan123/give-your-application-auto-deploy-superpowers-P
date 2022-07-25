@@ -4,7 +4,6 @@
   shell: |
     curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 
-
 - name: "Installing dependencies"
   become: true
   apt:
