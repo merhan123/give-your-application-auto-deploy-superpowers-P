@@ -30,8 +30,8 @@ Resources:
     Properties:
       InstanceType: t2.micro
       SecurityGroups:
-        - Ref: InstanceSecurityGroup
-      KeyName: vockey
+      - !Ref InstanceSecurityGroup
+      KeyName: udacity
       ImageId: ami-0729e439b6769d6ab 
       Tags:
         - Key: Name
