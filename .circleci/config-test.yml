@@ -318,7 +318,6 @@ jobs:
             ansible-playbook -i /tmp/workspace/inventory.txt deploy-backend.yml
       - destroy-environment
       - revert-migrations
-
   smoke-test:
     docker:
       - image: alpine:latest 
