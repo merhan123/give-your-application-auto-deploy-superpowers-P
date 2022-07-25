@@ -10,7 +10,7 @@
     name: ["nodejs"]
     state: latest
     update_cache: yes
-
+ 
 - name: "Installing pm2"
   become: true
   npm:
