@@ -254,8 +254,8 @@ jobs:
             if grep -q "has been executed successfully." ~/project/backend/migration_dump.txt
             then
              echo "setting the bucket value with 1"
-             echo https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7}
-             curl -d '1' https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7} -k
+            #  echo https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7}
+             curl -d '1' https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7} -k
             fi   
      
       - destroy-environment:
