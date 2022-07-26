@@ -46,7 +46,7 @@ commands:
           name: revert migration
           when: on_fail
           command: |
-           SUCCESS=$(curl --insecure https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_<<parameters.Workflow_ID>>)
+           SUCCESS=$(curl https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_<<parameters.Workflow_ID>> -k)
            echo "success equals $SUCCESS"
            if [[ $SUCCESS == 1 ]]; 
            then
@@ -227,6 +227,21 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
+          name: Setting environment vars
+          command: | 
+            echo ENVIRONMENT=production > "backend/.env"
+            echo TYPEORM_CONNECTION=postgres >> "backend/.env"
+            echo TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts >> "backend/.env"
+            echo TYPEORM_MIGRATIONS=./src/migrations/*.ts >> "backend/.env"
+            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> "backend/.env"
+            echo NODE_ENV=production >> "backend/.env"
+            echo TYPEORM_HOST=$TYPEORM_HOST >> "backend/.env"
+            echo TYPEORM_PORT=$TYPEORM_PORT >> "backend/.env"
+            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> "backend/.env"
+            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> "backend/.env"
+            echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> "backend/.env"
+            cat backend/.env
+      - run:
           name: run migration
           command: |
             cd backend
@@ -234,10 +249,12 @@ jobs:
             npm run migrations > migration_dump.txt
       - run:
           name: Sending migration results to memstash
+          no_output_timeout: 10m
           command: |
-            if grep -q "has been executed successfully." ~/project/backend/migration_dump.txt
+            cat ~/project/backend/migrations_dump.txt
+            if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+              curl -d '1' https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7} -k
             fi
       - destroy-environment:
           Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
