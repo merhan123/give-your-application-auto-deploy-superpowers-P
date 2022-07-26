@@ -246,7 +246,6 @@ jobs:
           command: |
             cd backend
             npm install 
-            npm run build
             npm run migrations > migration_dump.txt
       - run:
           name: Sending migration results to memstash
@@ -255,7 +254,7 @@ jobs:
             cat ~/project/backend/migration_dump.txt
             if grep -q "has been executed successfully." ~/project/backend/migration_dump.txt
             then
-              curl -d '1' https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7}
+              curl -d '1' https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7} -k
             fi
       - destroy-environment:
           Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
