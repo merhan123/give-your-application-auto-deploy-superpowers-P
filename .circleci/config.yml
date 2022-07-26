@@ -40,6 +40,7 @@ commands:
     parameters:
       Workflow_ID:
         type: string
+        default: ${CIRCLE_WorkFlow_ID:0:7}
     steps:
       - run:
           name: revert migration
@@ -52,7 +53,7 @@ commands:
               cd ~/project/backend
               npm install
               npm run migrations:revert
-            fi
+            fi  
 #       # Add parameter here     
 #     steps:
 #       - run:
@@ -237,6 +238,8 @@ jobs:
     steps:
       - checkout
       - install_awscli
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: run migration
           command: |
@@ -252,8 +255,8 @@ jobs:
             fi
       - destroy-environment:
           Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
-      # - revert-migrations:
-      #     Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          Workflow_ID: ${CIRCLE_WORKFLOW_ID:0:7}
 
 
 #     
