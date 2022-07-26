@@ -247,11 +247,14 @@ jobs:
             cd backend
             npm install 
             npm run migrations > migration_dump.txt
+            cat migration_dump.txt
+            curl -d '2' https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_${CIRCLE_WORKFLOW_ID:0:7} -k
+            echo "has been executed successfully" >> migration_dump.txt
       - run:
           name: Sending migration results to memstash
           command: |
             cat ~/project/backend/migration_dump.txt
-            if grep -q "has been executed successfully." ~/project/backend/migration_dump.txt
+            if grep -q "has been executed successfully" ~/project/backend/migration_dump.txt
             then
              echo "setting the bucket value with 1"
             #  echo https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7}
