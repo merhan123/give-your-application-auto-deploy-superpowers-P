@@ -48,11 +48,11 @@ commands:
           command: |
            SUCCESS=$(curl --insecure https://kvdb.io/BmmHvGiTjDnxMkWErWBeYK/migration_<<parameters.Workflow_ID>>)
            echo "success equals $SUCCESS"
-           if [[ $SUCCESS == 1]]; 
+           if [[ $SUCCESS == 1 ]]; 
            then
              cd ~/project/backend
              npm install
-             npm run migration:revert
+             npm run migrations:revert
            fi  
 #     
             
@@ -231,7 +231,7 @@ jobs:
           command: |
             cd backend
             npm install 
-            npm run migration > migration_dump.txt
+            npm run migrations > migration_dump.txt
       - run:
           name: Sending migration results to memstash
           command: |
