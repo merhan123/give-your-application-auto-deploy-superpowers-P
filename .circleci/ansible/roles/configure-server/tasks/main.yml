@@ -10,9 +10,17 @@
     name: ["nodejs"]
     state: latest
     update_cache: yes
+- name: "installing npm"
+  become: true
+  apt:
+    name: npm
+    update_cache: yes
+    state: latest
  
 - name: "Installing pm2"
   become: true
   npm:
     name: pm2
     global: yes
+    production: yes
+    state: present
