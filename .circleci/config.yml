@@ -382,7 +382,7 @@ jobs:
             then
               exit 0
             else
-              exit 0
+              exit 1
             fi  
       #FRONTEND_URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.${AWS_DEFAULT_REGION}.amazon.com"      
 
@@ -414,11 +414,12 @@ jobs:
             --template-file .circleci/files/cloudfront.yml \
             --stack-name InitialStack \
             --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
-            --tags project=udapeople
+         # --tags project=udapeople
+
       - destroy-environment:
-          WorkFlow_ID: "${CIRCLE_WORKFLOW_ID:0:7}"
+          Workflow_ID: "${CIRCLE_WORKFLOW_ID:0:7}"
       - revert-migrations:
-          WorkFlow_ID: "${CIRCLE_WORKFLOW_ID:0:7}" 
+          Workflow_ID: "${CIRCLE_WORKFLOW_ID:0:7}"  
 #             # your code here
 #           name:
 # cleanup:
