@@ -10,7 +10,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName: !Sub UdaPeople-${ID}
-      GroupDescription: Allow port 22 and port 3030.
+      GroupDescription: Allow port 22 and port 3030 and port 9100.
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -40,3 +40,5 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+        - Key: project
+          Value: udapeople
