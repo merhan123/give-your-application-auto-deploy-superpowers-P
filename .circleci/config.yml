@@ -12,6 +12,7 @@ commands:
 
             sudo npm install --global n
             sudo n 13.8.0
+            
   install_awscli:
     description: Install aws cli v2
     steps:
