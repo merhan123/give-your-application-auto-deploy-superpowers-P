@@ -176,9 +176,7 @@ jobs:
               --tags project=udapeaple \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"  \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
-    # avg(rate(node_cpu_second_total{mode!="idle"}[1m])) by (instance)*100    
-    # xtsjnkdnerqrcrwr
-    #https://hooks.slack.com/services/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 
+    #  
       - run:
           name: Ensure front-end infrastructure exist
           command: |
