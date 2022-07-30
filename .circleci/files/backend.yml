@@ -51,3 +51,4 @@ Resources:
     Properties:
       Domain: vpv
       InstanceId: !Ref EC2Instance 
+      
