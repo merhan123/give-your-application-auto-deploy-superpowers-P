@@ -1,0 +1,5 @@
+Github repo: https://github.com/merhan123/give-your-application-auto-deploy-superpowers-P
+S3 bucket: http://udapeople-087393b.s3-website-us-east-1.amazonaws.com
+cloudfront: http://d5lcoesznsgso.cloudfront.net
+Ec2 backend: ec2-3-230-32-210.compute-1.amazonaws.com	
+prometheus: ec2-3-85-36-80.compute-1.amazonaws.com	
