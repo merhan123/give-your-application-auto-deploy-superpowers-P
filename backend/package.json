@@ -13,7 +13,7 @@
     "prestart:prod": "rimraf dist && tsc",
     "start:prod": "node dist/main.js",
     "start:hmr": "node dist/server",
-    "lint": "tslint -p tsconfig.json -c tslint.json --fix",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -29,7 +29,8 @@
     "migrations-win": "ts-node node_modules/typeorm/cli.js migration:run",
     "premigrations:revert": "npm run build",
     "migrations:revert": "ts-node -r dotenv/config node_modules/.bin/typeorm migration:revert",
-    "update:domain": "npm update @kiwihr/kiwi-domain"
+    "update:domain": "npm update @kiwihr/kiwi-domain",
+    "lint:fix": "tslint -p tsconfig.json -c tslint.json --fix"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
